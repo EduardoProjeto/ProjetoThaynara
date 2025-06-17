@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recado Especial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            /* Novo gradiente de fundo alinhado com o tema cósmico */
+            background: linear-gradient(135deg, #1A0033, #330066, #6A0DAD);
+            background-size: 400% 400%;
+            animation: gradientAnimation 18s ease infinite; /* Animação mais suave */
+            overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif; /* Fonte para o corpo */
+            color: white;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .content-container {
+            /* Fundo e efeitos de vidro fosco como nas outras telas cósmicas */
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px; /* Mais padding */
+            border-radius: 25px; /* Mais arredondado */
+            /* Sombras que combinam com o login e menu */
+            box-shadow: 0 0 40px rgba(138, 43, 226, 0.7),
+                        0 0 80px rgba(255, 105, 180, 0.4);
+            text-align: center;
+            width: 90%;
+            max-width: 800px; /* Mais largura para o conteúdo */
+            -webkit-backdrop-filter: blur(10px); /* Aumenta o blur */
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+            max-height: 85vh; /* Mais altura */
+            display: flex;
+            flex-direction: column;
+            gap: 25px; /* Mais espaço entre os elementos */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+        }
+
+        h1 {
+            /* Estilo do título consistente com as outras telas */
+            font-family: 'Orbitron', sans-serif;
+            color: #FFD700; /* Dourado */
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+
+        /* --- ESTILOS ESPECÍFICOS PARA O MODELO "LIVRO" (Ajustados) --- */
+        .message-book {
+            /* Fundo e bordas mais sutis e integradas ao tema cósmico */
+            background-color: rgba(255, 255, 255, 0.05); /* Mais transparente */
+            padding: 35px 40px;
+            border-radius: 20px;
+            text-align: left;
+            line-height: 1.8; /* Mais espaçamento entre linhas */
+            border: 1px solid rgba(255, 255, 255, 0.08); /* Borda mais suave */
+            overflow-y: auto;
+            max-height: 65vh;
+            font-size: 1.15em; /* Fonte um pouco maior e mais leve */
+            font-weight: 300;
+            color: #E0FFFF; /* Um branco azulado suave */
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Mais espaço entre as seções */
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.03); /* Brilho interno sutil */
+        }
+
+        .message-section {
+            /* Fundo e borda esquerda ajustados para a paleta cósmica */
+            background-color: rgba(255, 255, 255, 0.03); /* Fundo ainda mais sutil para cada seção */
+            padding: 20px; /* Mais padding interno */
+            border-radius: 12px;
+            border-left: 4px solid #ADD8E6; /* Borda esquerda azul clara para destaque suave */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra mais profunda */
+        }
+
+        .message-section p {
+            margin: 0; /* Remover margem padrão dos parágrafos dentro da seção */
+            text-align: justify;
+        }
+
+        /* Estilo para o último parágrafo (o "Te amo") */
+        .message-book .message-section:last-child p {
+            font-weight: 600; /* Deixa o final mais forte */
+            text-align: right; /* Alinha o "Te amo" à direita */
+            color: #FFC0CB; /* Rosa suave */
+            margin-top: 1em; /* Ajusta a margem superior se necessário */
+        }
+        /* --- FIM DOS ESTILOS ESPECÍFICOS --- */
+
+        /* Estilo do botão "Voltar", idêntico ao dos botões de login/menu */
+        .back-button {
+            margin-top: 30px; /* Mais espaço acima */
+            padding: 15px 30px;
+            /* Gradiente de fundo do botão de login/menu */
+            background: linear-gradient(90deg, #8A2BE2 0%, #FF69B4 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            /* Sombra do botão de login/menu */
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+
+        .back-button:hover {
+            /* Efeito hover do botão de login/menu */
+            background: linear-gradient(90deg, #9932CC 0%, #FF8FB7 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+        }
+
+        /* Responsividade básica */
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 25px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .message-book {
+                padding: 20px 25px;
+                font-size: 1em;
+            }
+            .message-section {
+                padding: 15px;
+            }
+            .back-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1>Meu Livro de Momentos Estelares ❤️</h1>
+
+        <div class="message-book">
+            <div class="message-section">
+                <p>Então, amor... Vou tentar ser o mais breve possível porque sei que você deve estar ansiosa pra abrir essa caixa – e, sinceramente, eu também já tô aqui morrendo de curiosidade pra ver a sua reação.</p>
+                <p>Estou escrevendo esse texto hoje, dia 17/06, às 17:53. A gente tá em ligação agora, você está assistindo uma série de ação, e eu aqui... mexendo exatamente no site que você tá acessando nesse momento kkk.</p>
+            </div>
+            
+            <div class="message-section">
+                <p>Vida, eu te amo mais que tudo. Você é, sem dúvida, a pessoa mais especial do mundo pra mim. Você merece o mundo e muito mais. Sempre que eu olho pra você, eu vejo o quanto você tem uma alma linda, generosa e cheia de luz. Eu te amo pelo seu jeito, por como você me trata, pelo carinho, pela paciência (até quando você tá brava kkk), pela fofura, pela alegria... e até mesmo nos seus momentos de tristeza, porque é impressionante como você sempre faz de tudo pra me ver bem. Eu percebo isso em cada detalhe, e sou muito grato por ter alguém que se preocupa tanto comigo.</p>
+            </div>
+
+            <div class="message-section">
+                <p>Enfim, não quero enrolar muito... já tô aqui me controlando pra não surtar de ansiedade imaginando você lendo isso e abrindo a surpresa.</p>
+                <p>Só quero que você saiba, de coração, que eu te amo mais do que qualquer coisa nesse mundo. E que essa nova fase que estamos começando juntos seja mágica, leve, cheia de amor e de momentos inesquecíveis pra nós dois.</p>
+            </div>
+
+            <div class="message-section">
+                <p>Te amo demais ❤️</p>
+            </div>
+        </div>
+
+        <button class="back-button" onclick="window.location.href='menu.html'">Voltar para o Menu</button>
+    </div>
+</body>
+</html>

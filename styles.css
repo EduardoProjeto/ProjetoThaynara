@@ -1,56 +1,173 @@
+/* Importa a fonte Orbitron para um toque futurista/cósmico */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: black;
-  color: white;
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    font-family: 'Orbitron', sans-serif; /* Aplica a nova fonte */
+    background: linear-gradient(180deg, #0A0A1A 0%, #000000 100%); /* Gradiente muito escuro, do azul marinho profundo ao preto */
+    color: white;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Garante que as estrelas não causem scroll */
+    position: relative; /* Para posicionar as estrelas corretamente */
 }
 
+/* Efeito de Estrelas no Fundo (CSS puro) */
+.background-stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: -1; /* Fica atrás de tudo */
+}
+
+/* Cria as "estrelas" como sombras no pseudo-elemento */
+.background-stars::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    background: white;
+    box-shadow: 
+        100vw 50vh #FFF, 
+        80vw 20vh #FFF, 
+        60vw 80vh #FFF, 
+        30vw 10vh #FFF, 
+        10vw 90vh #FFF,
+        90vw 30vh #DDD,
+        70vw 70vh #DDD,
+        40vw 40vh #DDD,
+        20vw 60vh #DDD,
+        50vw 10vh #CCC,
+        /* Adicione mais estrelas (par de valores x y) aqui para mais densidade */
+        5vw 50vh #FFF, 
+        85vw 25vh #FFF, 
+        65vw 85vh #FFF, 
+        35vw 15vh #FFF, 
+        15vw 95vh #FFF,
+        95vw 35vh #DDD,
+        75vw 75vh #DDD,
+        45vw 45vh #DDD,
+        25vw 65vh #DDD,
+        55vw 5vh #CCC,
+        78vw 15vh #EEE,
+        12vw 88vh #EEE,
+        45vw 5vh #FFF,
+        92vw 62vh #FFF,
+        3vw 33vh #DDD,
+        66vw 95vh #EEE,
+        88vw 5vw #FFF; /* Exemplo de mais estrelas */
+    animation: twinkle 5s infinite alternate; /* Efeito de piscar sutil */
+}
+
+/* Efeito de piscar das estrelas */
+@keyframes twinkle {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+
 .login-container {
-  background: #111;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px #ff69b4;
-  width: 90%;
-  max-width: 320px;
-  text-align: center;
+    background: rgba(17, 17, 34, 0.4); /* Fundo com opacidade, um roxo/azul bem escuro */
+    -webkit-backdrop-filter: blur(8px); /* Compatibilidade Safari */
+    backdrop-filter: blur(8px); /* Efeito de vidro fosco */
+    padding: 40px; /* Mais padding */
+    border-radius: 15px; /* Bordas suaves */
+    box-shadow: 0 0 30px rgba(138, 43, 226, 0.6), /* Sombra roxa difusa */
+                0 0 60px rgba(255, 105, 180, 0.3); /* Efeito de brilho rosa distante */
+    width: 90%;
+    max-width: 380px; /* Um pouco mais largo */
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+    animation: fadeIn 1s ease-out; /* Animação de fade-in ao carregar */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    color: #ADD8E6; /* Um azul claro sereno para o título */
+    margin-bottom: 25px;
+    font-size: 1.6em;
+    font-weight: 700;
+    letter-spacing: 1px; /* Espaçamento entre letras */
+    text-shadow: 0 0 10px rgba(173, 216, 230, 0.5); /* Brilho sutil */
 }
 
 input {
-  width: 100%;
-  padding: 10px 12px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: none;
-  font-family: inherit;
-  font-size: 1em;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 12px 15px; /* Mais padding */
+    margin: 10px 0;
+    border-radius: 10px; /* Mais arredondado */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borda transparente */
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo sutilmente transparente */
+    color: #F0F8FF; /* Cor do texto */
+    font-family: inherit;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    outline: none; /* Remove outline padrão ao focar */
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.6); /* Cor do placeholder mais suave */
+}
+
+input:focus {
+    border-color: #9370DB; /* Roxo médio ao focar */
+    box-shadow: 0 0 10px rgba(147, 112, 219, 0.5); /* Sombra de foco */
+    background-color: rgba(255, 255, 255, 0.15); /* Fundo levemente mais visível ao focar */
 }
 
 button {
-  background-color: #ff69b4;
-  border: none;
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  color: white;
-  font-size: 1.1em;
-  cursor: pointer;
-  font-family: inherit;
-  transition: background-color 0.3s ease;
+    background: linear-gradient(90deg, #8A2BE2 0%, #FF69B4 100%); /* Gradiente do roxo ao rosa */
+    border: none;
+    width: 100%;
+    padding: 15px; /* Mais padding */
+    border-radius: 10px; /* Mais arredondado */
+    color: white;
+    font-size: 1.2em; /* Texto maior no botão */
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4); /* Sombra do botão */
+    margin-top: 15px;
 }
 
 button:hover {
-  background-color: #e0559a;
+    background: linear-gradient(90deg, #9932CC 0%, #FF8FB7 100%); /* Gradiente ligeiramente mais claro no hover */
+    transform: translateY(-2px); /* Efeito de elevação */
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6); /* Sombra mais pronunciada */
 }
 
 #error-message {
-  color: #ff4444;
-  margin-top: 10px;
-  min-height: 18px;
-  font-size: 0.9em;
+    color: #FF5555; /* Vermelho vibrante para erro */
+    margin-top: 15px;
+    min-height: 20px;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* Responsividade básica */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 25px;
+        max-width: 95%;
+    }
+    h2 {
+        font-size: 1.4em;
+    }
+    input, button {
+        padding: 10px;
+        font-size: 0.9em;
+    }
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nosso Mundo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -12,15 +13,15 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            color: white;
-            background: linear-gradient(-45deg, #6a11cb, #691afc, #ff6ec4, #6a11cb);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
+            /* Novo gradiente mais profundo e sereno, com toques de rosa */
+            background: linear-gradient(-45deg, #1A0033, #330066, #6A0DAD, #FF69B4, #330066, #1A0033);
+            background-size: 600% 600%; /* Aumenta o tamanho para animação mais suave */
+            animation: gradientAnimation 20s ease infinite; /* Animação mais lenta */
             overflow: hidden;
             padding: 0 20px;
             box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif; /* Fonte para o corpo */
+            color: white;
         }
 
         @keyframes gradientAnimation {
@@ -30,56 +31,79 @@
         }
 
         .menu-container {
-            background-color: rgba(0, 0, 0, 0.4);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 25px rgba(92, 3, 151, 0.671);
+            background-color: rgba(0, 0, 0, 0.5); /* Fundo mais escuro para maior contraste */
+            padding: 40px; /* Mais padding */
+            border-radius: 25px; /* Mais arredondado */
+            /* Nova sombra que combina com o fundo cósmico */
+            box-shadow: 0 0 40px rgba(138, 43, 226, 0.7), /* Roxo difuso */
+                        0 0 80px rgba(255, 105, 180, 0.4); /* Rosa distante */
             text-align: center;
             width: 100%;
-            max-width: 400px;
-            -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
+            max-width: 450px; /* Um pouco mais largo */
+            -webkit-backdrop-filter: blur(10px); /* Aumenta o blur para efeito de vidro */
+            backdrop-filter: blur(10px);
             box-sizing: border-box;
             position: relative;
             z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
         }
 
+        h1 { /* Adiciona um título ao menu, se quiser */
+            font-family: 'Orbitron', sans-serif;
+            color: #FFD700;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Estilo dos itens do menu, copiando o do botão de login */
         .menu-item {
             display: block;
-            margin: 15px 0;
-            padding: 15px 25px;
-            background-color: rgba(255, 255, 255, 0.1);
+            margin: 20px 0; /* Mais espaçamento entre os itens */
+            padding: 18px 30px; /* Mais padding para botões maiores */
+            /* Gradiente de fundo do botão de login */
+            background: linear-gradient(90deg, #8A2BE2 0%, #FF69B4 100%);
             color: white;
             text-decoration: none;
             border-radius: 12px;
-            font-size: 1.2em;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-size: 1.3em; /* Fonte um pouco maior */
+            font-weight: 600; /* Mais forte */
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
             cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            /* Sombra do botão de login */
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            border: none; /* Remove a borda original */
+            font-family: 'Montserrat', sans-serif; /* Consistência da fonte */
         }
 
         .menu-item:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
+            /* Efeito hover do botão de login */
+            background: linear-gradient(90deg, #9932CC 0%, #FF8FB7 100%);
+            transform: translateY(-3px); /* Efeito de elevação maior */
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
         }
 
         .final-button {
-            margin-top: 30px;
-            padding: 15px 30px;
-            background-color: #FFD700;
+            margin-top: 40px; /* Mais espaço acima do botão */
+            padding: 20px 40px; /* Botão bem maior e mais chamativo */
+            background-color: #FFD700; /* Dourado */
             color: #333;
             border: none;
             border-radius: 15px;
-            font-size: 1.3em;
+            font-size: 1.6em; /* Fonte bem maior */
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6); /* Sombra mais intensa */
+            font-family: 'Orbitron', sans-serif; /* Fonte cósmica para o final */
+            letter-spacing: 1px;
         }
 
         .final-button:hover {
             background-color: #FFC400;
-            transform: scale(1.05);
+            transform: scale(1.08); /* Aumenta um pouco mais no hover */
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.8);
         }
 
         /* Imagens caindo */
@@ -96,46 +120,83 @@
         .fall {
             position: absolute;
             top: -100px;
-            width: 50px;
-            opacity: 0.8;
+            width: 40px; /* Tamanho padrão menor para os elementos caindo */
+            height: auto;
+            opacity: 0.7; /* Mais transparente */
             animation-name: fall;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
+            transform-origin: center center; /* Rotação no centro da imagem */
         }
 
         @keyframes fall {
             0% {
-                transform: translateY(-100px) rotate(0deg);
+                transform: translateY(-100px) rotate(0deg) scale(0.8); /* Começa menor */
             }
             100% {
-                transform: translateY(110vh) rotate(360deg);
+                transform: translateY(110vh) rotate(360deg) scale(1.2); /* Termina maior, dando perspectiva */
             }
         }
 
-        .falling-images img:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; }
-        .falling-images img:nth-child(2) { left: 45%; animation-duration: 10s; animation-delay: 2s; }
-        .falling-images img:nth-child(3) { left: 70%; animation-duration: 14s; animation-delay: 4s; }
-        .falling-images img:nth-child(4) { left: 30%; animation-duration: 11s; animation-delay: 1s; }
-        .falling-images img:nth-child(5) { left: 80%; animation-duration: 13s; animation-delay: 3s; }
-        .falling-images img:nth-child(6) { left: 55%; animation-duration: 9s;  animation-delay: 2s; }
+        /* Ajustes individuais para as imagens caindo */
+        .falling-images img:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; width: 45px;}
+        .falling-images img:nth-child(2) { left: 45%; animation-duration: 10s; animation-delay: 2s; width: 35px;}
+        .falling-images img:nth-child(3) { left: 70%; animation-duration: 14s; animation-delay: 4s; width: 50px;}
+        .falling-images img:nth-child(4) { left: 30%; animation-duration: 11s; animation-delay: 1s; width: 30px;}
+        .falling-images img:nth-child(5) { left: 80%; animation-duration: 13s; animation-delay: 3s; width: 48px;}
+        .falling-images img:nth-child(6) { left: 55%; animation-duration: 9s; animation-delay: 2s; width: 42px;}
+        /* Adicione mais regras para as outras imagens (7 em diante) */
+        .falling-images img:nth-child(7) { left: 20%; animation-duration: 11.5s; animation-delay: 0.5s; width: 38px;}
+        .falling-images img:nth-child(8) { left: 60%; animation-duration: 10.5s; animation-delay: 2.5s; width: 40px;}
+        .falling-images img:nth-child(9) { left: 90%; animation-duration: 12.5s; animation-delay: 4.5s; width: 32px;}
+        .falling-images img:nth-child(10) { left: 5%; animation-duration: 13.5s; animation-delay: 1.5s; width: 55px;}
+        .falling-images img:nth-child(11) { left: 75%; animation-duration: 9.5s; animation-delay: 3.5s; width: 28px;}
+
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            .menu-container {
+                padding: 30px;
+                max-width: 95%;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .menu-item {
+                padding: 15px 20px;
+                font-size: 1.1em;
+            }
+            .final-button {
+                padding: 15px 30px;
+                font-size: 1.3em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            .menu-item {
+                font-size: 1em;
+            }
+            .final-button {
+                font-size: 1.2em;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="menu-container">
-        <a href="seu-texto.html" class="menu-item">Mensagem Especial</a>
-        <a href="acontecimentos.html" class="menu-item">Nossos Momentos</a>
-        <a href="mensagem-favorita.html" class="menu-item">Minhas Mensagens Favoritas</a>
-        <a href="presente.html" class="menu-item">Sobre o Presente</a>
+        <h1>Nosso Mundo ✨</h1> <a href="mensagem-especial.html" class="menu-item">Recado Especial</a> <a href="mensagem-favorita.html" class="menu-item">Mensagens Favoritas</a> <a href="presente.html" class="menu-item">Sobre o Presente</a>
         <button class="final-button" onclick="alert('Agora pode abrir seu presente! A caixa te espera :)');">
-            FIM
+            FIMM!!
         </button>
     </div>
 
-    <!-- Imagens caindo -->
     <div class="falling-images">
         <img src="src/stitch1.png" class="fall" alt="Stitch1" />
-        <img src="src/borboleta1.png" class="fall" alt="Borboleta1" />
+        <img src="src/borboleta3.png" class="fall" alt="borboleta3" />
         <img src="src/stitch2.png" class="fall" alt="Stitch2" />
         <img src="src/borboleta2.png" class="fall" alt="Borboleta2" />
         <img src="src/stitch3.png" class="fall" alt="Stitch3" />
@@ -143,6 +204,8 @@
         <img src="src/stitch2.png" class="fall" alt="Stitch2" />
         <img src="src/borboleta2.png" class="fall" alt="Borboleta2" />
         <img src="src/stitch3.png" class="fall" alt="Stitch3" />
+        <img src="src/borboleta3.png" class="fall" alt="borboleta3" />
+        <img src="src/stitch2.png" class="fall" alt="Stitch2" />
     </div>
 
 </body>

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre o Presente</title>
+    <title>Sobre Nosso Presente Cósmico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -12,16 +13,15 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            color: white;
-            /* Gradiente animado, igual ao menu.html para uma transição visual suave */
-            background: linear-gradient(135deg, #FF69B4, #8A2BE2);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
+            /* Gradiente animado, idêntico ao menu e mensagens para uma transição visual suave */
+            background: linear-gradient(-45deg, #1A0033, #330066, #6A0DAD, #FF69B4, #330066, #1A0033);
+            background-size: 600% 600%; /* Aumenta o tamanho para animação mais suave */
+            animation: gradientAnimation 20s ease infinite; /* Animação mais lenta */
             overflow: hidden;
             padding: 20px;
             box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif; /* Fonte para o corpo */
+            color: white;
         }
 
         @keyframes gradientAnimation {
@@ -31,81 +31,110 @@
         }
 
         .content-container {
-            background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 25px rgba(255, 105, 180, 0.7);
+            /* Fundo e efeitos de vidro fosco como nas outras telas cósmicas */
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px; /* Mais padding */
+            border-radius: 25px; /* Mais arredondado */
+            /* Sombras que combinam com o login e menu */
+            box-shadow: 0 0 40px rgba(138, 43, 226, 0.7),
+                        0 0 80px rgba(255, 105, 180, 0.4);
             text-align: center;
             width: 90%;
-            max-width: 650px; /* Maior largura para textos mais longos */
-            -webkit-backdrop-filter: blur(8px);
-            backdrop-filter: blur(8px);
-            overflow-y: auto;
-            max-height: 80vh;
+            max-width: 700px; /* Largura consistente */
+            -webkit-backdrop-filter: blur(10px); /* Aumenta o blur */
+            backdrop-filter: blur(10px);
+            overflow-y: auto; /* Permite rolagem se o conteúdo for muito grande */
+            max-height: 85vh; /* Ocupa mais altura da tela */
             display: flex;
             flex-direction: column;
-            gap: 25px; /* Espaço entre as mensagens */
+            gap: 30px; /* Mais espaço entre os elementos */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
         }
 
         h1 {
-            color: #FFD700;
+            /* Estilo do título consistente com as outras telas */
+            font-family: 'Orbitron', sans-serif;
+            color: #FFD700; /* Dourado */
             margin-bottom: 25px;
-            font-size: 1.8em;
+            font-size: 2.2em;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
         }
 
         .message-card {
-            background-color: rgba(255, 255, 255, 0.1); /* Fundo sutil para a mensagem */
-            padding: 20px;
-            border-radius: 15px;
+            /* Estilo do card de mensagem para um visual etéreo e limpo */
+            background-color: rgba(255, 255, 255, 0.08); /* Fundo sutilmente transparente */
+            padding: 30px 35px; /* Mais padding para o texto */
+            border-radius: 18px; /* Mais arredondado */
             text-align: left;
-            font-style: italic; /* Mensagem com estilo de citação */
-            line-height: 1.6;
+            line-height: 1.7; /* Bom espaçamento entre linhas */
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Borda sutil */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidade */
+            color: #E0FFFF; /* Cor do texto (branco azulado suave) */
         }
 
-        /* Removendo as aspas grandes para este card, pois é sua mensagem */
-        /* .message-card::before {
-            content: '“';
-            font-size: 4em;
-            color: rgba(255, 255, 255, 0.3);
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            line-height: 1;
-            opacity: 0.7;
-        } */
+        /* Removendo o estilo ::before para aspas grandes, já que é uma mensagem direta e não uma citação */
+        .message-card::before {
+            content: none; /* Garante que a aspa não apareça */
+        }
 
         .message-card p {
             margin: 0;
-            /* Se quiser um pequeno recuo, mesmo sem aspas, para consistência */
-            /* padding-left: 10px; */
-            font-size: 1.05em;
-            font-style: normal; /* Seu texto pode ser normal, não itálico, se preferir */
+            padding-left: 0; /* Remove o padding extra que era para a aspa */
+            font-size: 1.1em; /* Tamanho da fonte */
+            font-style: normal; /* Garante que o texto não fique em itálico, a menos que especificado */
+            font-weight: 300; /* Texto mais leve */
         }
 
+        /* Estilo do botão "Voltar", idêntico ao dos botões de login/menu */
         .back-button {
-            margin-top: 25px;
-            padding: 12px 25px;
-            background-color: #00BFFF;
+            margin-top: 35px; /* Mais espaço acima */
+            padding: 15px 30px;
+            /* Gradiente de fundo do botão de login/menu */
+            background: linear-gradient(90deg, #8A2BE2 0%, #FF69B4 100%);
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 1.1em;
+            font-size: 1.2em;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 3px 10px rgba(0, 191, 255, 0.4);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            /* Sombra do botão de login/menu */
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
         }
 
         .back-button:hover {
-            background-color: #009ACD;
-            transform: translateY(-2px);
+            /* Efeito hover do botão de login/menu */
+            background: linear-gradient(90deg, #9932CC 0%, #FF8FB7 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+        }
+
+        /* Responsividade básica */
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 25px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .message-card {
+                padding: 20px 25px;
+                font-size: 1em;
+            }
+            .back-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="content-container">
-        <h1>Sobre o Presente</h1>
+        <h1>Sobre Nosso Presente Cósmico 🎁</h1>
 
         <div class="message-card">
             <p>
@@ -113,7 +142,7 @@
             </p>
         </div>
 
-        <button class="back-button" onclick="window.location.href='menu.html'">Voltar para os Menus</button>
+        <button class="back-button" onclick="window.location.href='menu.html'">Voltar para o Menu</button>
     </div>
 </body>
 </html>
