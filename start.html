@@ -123,10 +123,10 @@
             const exclusionRight = Math.max(messageRect.right, buttonRect.right);
 
             // ***** MUDANÇA CRÍTICA AQUI: Reduzindo ainda mais a margem de segurança *****
-            const safetyMargin = 5; // Tentativa com 5 pixels - bem próximo ao limite
+            const safetyMargin = 10; 
 
-            // ***** AUMENTANDO MAIS O NÚMERO DE ESTRELAS *****
-            const numStars = 100; // Aumentei para 300 estrelas
+            
+            const numStars = 50; 
 
             for (let i = 0; i < numStars; i++) {
                 const star = document.createElement('div');
