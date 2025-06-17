@@ -81,9 +81,9 @@ body {
     /* **MUDANÇA CRÍTICA AQUI:** Aumentei a opacidade do fundo.
        Isso é o que provavelmente estava causando o "esbranquiçado" no iOS.
        De 0.4 para 0.7 ou 0.8. Tente 0.7 primeiro, se não funcionar, tente 0.8. */
-    background: rgba(17, 17, 34, 0.4); /* AUMENTADO: de 0.4 para 0.7 */
-    -webkit-backdrop-filter: blur(8px); /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    backdrop-filter: blur(8px); /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
+  background: rgba(17, 17, 34, 0.7); /* Mantenha a opacidade aumentada */
+    -webkit-backdrop-filter: blur(4px); /* REDUZIDO de 8px para 4px */
+    backdrop-filter: blur(4px); /* REDUZIDO de 8px para 4px */
     padding: 40px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
     border-radius: 15px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
     box-shadow: 0 0 30px rgba(138, 43, 226, 0.6), /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
