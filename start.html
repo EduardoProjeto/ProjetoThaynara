@@ -8,17 +8,16 @@
         body {
             margin: 0;
             background-color: black;
-            overflow: hidden; /* Mantém o scroll escondido para as estrelas */
+            overflow: hidden;
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             flex-direction: column;
-            /* ***** MUDANÇA AQUI: Nova pilha de fontes do sistema ***** */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
                          Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            position: relative; /* Necessário para z-index */
+            position: relative;
         }
 
         .star {
@@ -27,18 +26,17 @@
             height: 2px;
             background: white;
             border-radius: 50%;
-            z-index: 0; /* Estrelas atrás do conteúdo principal */
+            z-index: 0;
         }
 
         #messages {
-            position: relative; /* Para que z-index funcione */
-            z-index: 10; /* Garante que as mensagens fiquem acima das estrelas */
-            display: flex; /* Para centralizar as mensagens internamente */
-            flex-direction: column; /* Organiza as mensagens em coluna */
-            justify-content: center; /* Centraliza verticalmente */
-            align-items: center; /* Centraliza horizontalmente */
-            height: auto; /* Altura automática para o conteúdo */
-            /* padding: 20px; */ /* Removido, como discutido na iteração anterior */
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: auto;
         }
 
         .message {
@@ -46,15 +44,13 @@
             font-size: 1.5em;
             text-align: center;
             transition: opacity 1s;
-            margin-bottom: 20px; /* Espaço entre as mensagens */
-            padding: 0 15px; /* Adiciona padding lateral para o texto em si */
-            box-sizing: border-box; /* Para que o padding não adicione largura extra */
+            margin-bottom: 20px;
+            padding: 0 15px; /* Mantém o padding lateral para o texto em si */
+            box-sizing: border-box;
         }
 
-        /* --- ESTILO DO BOTÃO --- */
         #nextButton {
-            display: none; /* Inicialmente oculto pelo JS */
-            
+            display: none;
             background: linear-gradient(90deg, #8A2BE2 0%, #FF69B4 100%);
             border: none;
             padding: 15px 30px;
@@ -62,8 +58,7 @@
             color: white;
             font-size: 1.2em;
             cursor: pointer;
-            /* ***** MUDANÇA AQUI: Inherit para herdar a fonte do body ***** */
-            font-family: inherit; 
+            font-family: inherit;
             font-weight: 700;
             letter-spacing: 0.8px;
             transition: all 0.3s ease;
@@ -78,14 +73,12 @@
             box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
         }
 
-        /* Destaque da palavra "tudo" */
         #highlight {
             color: #FFD700;
             text-shadow: 0 0 10px #FFD700,
                          0 0 20px rgba(255, 215, 0, 0.7);
         }
 
-        /* Responsividade para mensagens em telas menores */
         @media (max-width: 600px) {
             .message {
                 font-size: 1.2em;
@@ -103,13 +96,12 @@
     <div id="messages">
         <div id="msg1" class="message">Esse era o meu mundo sem você...</div>
         <div id="msg2" class="message">Mas...</div>
-        <div id="msg3" class="message">Você chegou e mudou <span id="highlight">Tudo!</span></div>
+        <div id="msg3" class="message">Você chegou e mudou <span id="highlight">Tudo!</span>.</div>
     </div>
 
     <button id="nextButton" onclick="window.location.href='menu.html'">Continuar</button>
 
     <script>
-        // Função para gerar um número aleatório dentro de um intervalo
         function getRandom(min, max) {
             return Math.random() * (max - min) + min;
         }
@@ -122,14 +114,20 @@
             const messageRect = messagesContainer.getBoundingClientRect();
             const buttonRect = nextButton.getBoundingClientRect();
 
+            // Definir a área de exclusão combinando texto e botão
+            // Considerar a área do topo da primeira mensagem até a base do botão
+            // e a largura máxima do elemento mais largo (texto ou botão)
             const exclusionTop = messageRect.top;
             const exclusionBottom = buttonRect.bottom;
             const exclusionLeft = Math.min(messageRect.left, buttonRect.left);
             const exclusionRight = Math.max(messageRect.right, buttonRect.right);
 
-            const safetyMargin = 25; // Margem de segurança
+            // ***** MUDANÇA CRÍTICA AQUI: Reduzindo ainda mais a margem de segurança *****
+            const safetyMargin = 5; // Tentativa com 5 pixels - bem próximo ao limite
 
-            const numStars = 150; // Aumentei para 150 estrelas
+            // ***** AUMENTANDO MAIS O NÚMERO DE ESTRELAS *****
+            const numStars = 300; // Aumentei para 300 estrelas
+
             for (let i = 0; i < numStars; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
@@ -147,20 +145,22 @@
                     starX <= (exclusionRight + safetyMargin) &&
                     starY >= (exclusionTop - safetyMargin) &&
                     starY <= (exclusionBottom + safetyMargin) &&
-                    tries < 200
+                    tries < 300 // Aumentei um pouco mais as tentativas
                 );
 
-                if (tries >= 200) {
+                // Se depois de muitas tentativas ainda estiver dentro, pule esta estrela ou posicione em um canto
+                if (tries >= 300) {
+                     // Caso extremo, posiciona a estrela aleatoriamente fora da área principal
+                     // para garantir que apareça, mesmo que não seja otimamente
                      starX = getRandom(0, window.innerWidth);
-                     starY = getRandom(0, 50);
-                     if (Math.random() > 0.5) {
-                         starY = getRandom(window.innerHeight - 50, window.innerHeight);
-                     }
+                     // 50% de chance de ir para o topo, 50% para a base
+                     starY = Math.random() > 0.5 ? getRandom(0, 50) : getRandom(window.innerHeight - 50, window.innerHeight);
                 }
 
                 star.style.left = starX + 'px';
                 star.style.top = starY + 'px';
 
+                // Mantendo o tamanho e opacidade variados das estrelas
                 const size = getRandom(1, 3);
                 star.style.width = size + 'px';
                 star.style.height = size + 'px';
@@ -169,7 +169,7 @@
             }
         }, 100);
 
-        // Controlando a exibição das mensagens
+        // Controlando a exibição das mensagens (sem alterações aqui)
         const msg1 = document.getElementById('msg1');
         const msg2 = document.getElementById('msg2');
         const msg3 = document.getElementById('msg3');
