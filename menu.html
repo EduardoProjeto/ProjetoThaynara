@@ -15,10 +15,14 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
                 Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             color: white;
-            background: linear-gradient(135deg, #FF69B4, #24d3ff); /* Gradiente inicial rosa e roxo/azul */
+            background: linear-gradient(135deg, #FF69B4, #8A2BE2); /* Gradiente inicial rosa e roxo/azul */
             background-size: 400% 400%;
             animation: gradientAnimation 15s ease infinite; /* Animação suave do gradiente */
             overflow: hidden; /* Garante que o gradiente não cause barras de rolagem */
+            
+            /* ----> NOVA LINHA AQUI <---- */
+            padding: 0 20px; /* Adiciona 20px de espaçamento nas laterais (top/bottom 0, left/right 20px) */
+            box-sizing: border-box; /* Garante que o padding não aumente a largura total */
         }
 
         @keyframes gradientAnimation {
@@ -31,12 +35,13 @@
             background-color: rgba(0, 0, 0, 0.4); /* Fundo semi-transparente para o menu */
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 0 25px rgba(72, 6, 148, 0.7); /* Sombra neon rosa */
+            box-shadow: 0 0 25px rgba(255, 105, 180, 0.7); /* Sombra neon rosa */
             text-align: center;
-            width: 90%;
+            width: 100%; /* Ocupa 100% da largura DISPONÍVEL (após o padding do body) */
             max-width: 400px;
             -webkit-backdrop-filter: blur(5px); /* Para compatibilidade com Safari */
             backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
+            box-sizing: border-box; /* Garante que o padding interno não ultrapasse a largura definida */
         }
 
         .menu-item {
@@ -81,8 +86,8 @@
 <body>
     <div class="menu-container">
         <a href="seu-texto.html" class="menu-item">Mensagem Especial</a>
-        <a href="Algo?.html" class="menu-item">Algo?</a>
-        <a href="mensagem-favorita.html" class="menu-item">Minhas Mensagens Favoritas</a>
+        <a href="acontecimentos.html" class="menu-item">Nossos Momentos</a>
+        <a href="mensagem-favorita.html" class="menu-item">Sua Mensagem Favorita</a>
         <a href="presente.html" class="menu-item">Sobre o Presente</a>
     </div>
 
