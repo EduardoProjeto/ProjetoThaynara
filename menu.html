@@ -15,14 +15,12 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
                 Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             color: white;
-            background: linear-gradient(135deg, #FF69B4, #2bc6e2); /* Gradiente inicial rosa e roxo/azul */
+            background: linear-gradient(-45deg, #6a11cb, #691afc, #ff6ec4, #6a11cb);
             background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite; /* Animação suave do gradiente */
-            overflow: hidden; /* Garante que o gradiente não cause barras de rolagem */
-            
-            /* ----> NOVA LINHA AQUI <---- */
-            padding: 0 20px; /* Adiciona 20px de espaçamento nas laterais (top/bottom 0, left/right 20px) */
-            box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+            animation: gradientAnimation 15s ease infinite;
+            overflow: hidden;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
 
         @keyframes gradientAnimation {
@@ -32,41 +30,43 @@
         }
 
         .menu-container {
-            background-color: rgba(0, 0, 0, 0.4); /* Fundo semi-transparente para o menu */
+            background-color: rgba(0, 0, 0, 0.4);
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 0 25px rgba(92, 3, 151, 0.671); /* Sombra neon rosa */
+            box-shadow: 0 0 25px rgba(92, 3, 151, 0.671);
             text-align: center;
-            width: 100%; /* Ocupa 100% da largura DISPONÍVEL (após o padding do body) */
+            width: 100%;
             max-width: 400px;
-            -webkit-backdrop-filter: blur(5px); /* Para compatibilidade com Safari */
-            backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
-            box-sizing: border-box; /* Garante que o padding interno não ultrapasse a largura definida */
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
         }
 
         .menu-item {
             display: block;
             margin: 15px 0;
             padding: 15px 25px;
-            background-color: rgba(255, 255, 255, 0.1); /* Botões semi-transparentes */
+            background-color: rgba(255, 255, 255, 0.1);
             color: white;
             text-decoration: none;
             border-radius: 12px;
             font-size: 1.2em;
             transition: background-color 0.3s ease, transform 0.2s ease;
             cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Borda sutil */
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .menu-item:hover {
             background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px); /* Efeito de "levantar" ao passar o mouse */
+            transform: translateY(-3px);
         }
 
         .final-button {
             margin-top: 30px;
             padding: 15px 30px;
-            background-color: #FFD700; /* Dourado para o botão final */
+            background-color: #FFD700;
             color: #333;
             border: none;
             border-radius: 15px;
@@ -74,25 +74,76 @@
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5); /* Sombra dourada */
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
         }
 
         .final-button:hover {
             background-color: #FFC400;
-            transform: scale(1.05); /* Aumenta um pouco ao passar o mouse */
+            transform: scale(1.05);
         }
+
+        /* Imagens caindo */
+        .falling-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .fall {
+            position: absolute;
+            top: -100px;
+            width: 50px;
+            opacity: 0.8;
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        .falling-images img:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; }
+        .falling-images img:nth-child(2) { left: 45%; animation-duration: 10s; animation-delay: 2s; }
+        .falling-images img:nth-child(3) { left: 70%; animation-duration: 14s; animation-delay: 4s; }
+        .falling-images img:nth-child(4) { left: 30%; animation-duration: 11s; animation-delay: 1s; }
+        .falling-images img:nth-child(5) { left: 80%; animation-duration: 13s; animation-delay: 3s; }
+        .falling-images img:nth-child(6) { left: 55%; animation-duration: 9s;  animation-delay: 2s; }
     </style>
 </head>
 <body>
+
     <div class="menu-container">
         <a href="seu-texto.html" class="menu-item">Mensagem Especial</a>
         <a href="acontecimentos.html" class="menu-item">Nossos Momentos</a>
         <a href="mensagem-favorita.html" class="menu-item">Minhas Mensagens Favoritas</a>
         <a href="presente.html" class="menu-item">Sobre o Presente</a>
+        <button class="final-button" onclick="alert('Agora pode abrir seu presente! A caixa te espera :)');">
+            FIM
+        </button>
     </div>
 
-    <button class="final-button" onclick="alert('Agora pode abrir seu presente! A caixa te espera :)');">
-        FIM
-    </button>
+    <!-- Imagens caindo -->
+    <div class="falling-images">
+        <img src="src/stitch1.png" class="fall" alt="Stitch1" />
+        <img src="src/borboleta1.png" class="fall" alt="Borboleta1" />
+        <img src="src/stitch2.png" class="fall" alt="Stitch2" />
+        <img src="src/borboleta2.png" class="fall" alt="Borboleta2" />
+        <img src="src/stitch3.png" class="fall" alt="Stitch3" />
+        <img src="src/borboleta3.png" class="fall" alt="Borboleta3" />
+        <img src="src/stitch2.png" class="fall" alt="Stitch2" />
+        <img src="src/borboleta2.png" class="fall" alt="Borboleta2" />
+        <img src="src/stitch3.png" class="fall" alt="Stitch3" />
+    </div>
+
 </body>
 </html>
