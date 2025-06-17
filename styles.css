@@ -16,6 +16,9 @@ body {
     /* Adicionando will-change para uma pequena otimização. Pode ser removido se não ajudar. */
     will-change: background-image;
     transform: translateZ(0); /* ADICIONADO */
+     padding: 0 20px; /* 0px de padding vertical e 20px de padding horizontal */
+    /* Você pode ajustar o 20px para um valor que ache melhor, ex: 15px, 25px */
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
 }
 
 /* Efeito de Estrelas no Fundo (CSS puro) - MANTIDO EXATAMENTE COMO VOCÊ TINHA */
@@ -83,21 +86,20 @@ body {
     /* **MUDANÇA CRÍTICA AQUI:** Aumentei a opacidade do fundo.
        Isso é o que provavelmente estava causando o "esbranquiçado" no iOS.
        De 0.4 para 0.7 ou 0.8. Tente 0.7 primeiro, se não funcionar, tente 0.8. */
-    background: rgba(17, 17, 34, 0.4); /* AUMENTADO: de 0.4 para 0.7 */
-    -webkit-backdrop-filter: blur(8px); /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    backdrop-filter: blur(8px); /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    padding: 40px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    border-radius: 15px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    box-shadow: 0 0 30px rgba(138, 43, 226, 0.6), /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-                0 0 60px rgba(255, 105, 180, 0.3); /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    width: 90%; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    max-width: 380px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    text-align: center; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    animation: fadeIn 1s ease-out; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    /* Adicionando will-change para uma pequena otimização. Pode ser removido se não ajudar. */
+     background: rgba(17, 17, 34, 0.4); /* Seu valor original de opacidade que agora funciona */
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(138, 43, 226, 0.6),
+                0 0 60px rgba(255, 105, 180, 0.3);
+    width: 90%; /* Isso garante que ele ocupe 90% da largura disponível */
+    max-width: 380px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 1s ease-out;
     will-change: transform, opacity;
-    transform: translateZ(0); /* ADICIONADO */
+    transform: translateZ(0);
 }
 
 @keyframes fadeIn {
