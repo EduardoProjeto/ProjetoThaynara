@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Mensagens Favoritas</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            color: white;
+            /* Gradiente animado, igual ao menu.html para uma transição visual suave */
+            background: linear-gradient(135deg, #FF69B4, #8A2BE2);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .content-container {
+            background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255, 105, 180, 0.7);
+            text-align: center;
+            width: 90%;
+            max-width: 650px; /* Maior largura para textos mais longos */
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            overflow-y: auto;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            gap: 25px; /* Espaço entre as mensagens */
+        }
+
+        h1 {
+            color: #FFD700;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        .message-card {
+            background-color: rgba(255, 255, 255, 0.1); /* Fundo sutil para cada mensagem */
+            padding: 20px;
+            border-radius: 15px;
+            text-align: left;
+            font-style: italic; /* Mensagens com estilo de citação */
+            line-height: 1.6;
+            position: relative; /* Para o ícone de citação */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .message-card::before {
+            content: '“'; /* Aspas de citação */
+            font-size: 4em;
+            color: rgba(255, 255, 255, 0.548);
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            line-height: 1;
+            opacity: 0.7;
+        }
+
+        .message-card p {
+            margin: 0;
+            padding-left: 40px; /* Espaço para a aspa */
+            font-size: 1.05em;
+        }
+
+        .back-button {
+            margin-top: 25px;
+            padding: 12px 25px;
+            background-color: #00BFFF;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 3px 10px rgba(0, 191, 255, 0.4);
+        }
+
+        .back-button:hover {
+            background-color: #009ACD;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1>Minhas Mensagens Favoritas</h1>
+
+        <div class="message-card">
+            <p>
+                Então, eu gosto muito de vc, acho que meio doido tudo isso, mas sla as vezes eu fico com medo de falar as coisas e ser mais próxima de vc e acabar sendo invasiva por vc não sentir o mesmo, mas acho que as coisas vem e vão muito rápido, então eu sei que essa situação é meio rápida né, porém eu gosto de vc, gosto de como vc me trata, vc traz sensações diferentes, muita das vezes sinto meu coração ficar acelerado com qualquer coisinha que vc faz , amo ouvir a sua voz, geralmente me pego sorrindo quando escuto vc, vc é um garoto incrível, tem um coração maravilhoso vc é simplesmente a pessoa mais doce que eu já conheci na minha vida, Caramba vc faz o meu corpo inteiro entrar em pânico desde o dia em que nos vimos , não sabia ao certo como ia ser mas sabia que não daria pra me afastar kkkkk, então não sei como vc se sente em relação a tudo isso, mas eu gosto de vc, não sei oq podemos ser e tals, mas aceito oq vc quiser 🫶🏻
+            </p>
+        </div>
+
+        <div class="message-card">
+            <p>
+                Sabe algo que eu penso, eu fico muito feliz pela Alice ter vc como pai sabe, vc é uma pessoa incrível, vc é cuidadoso e super amoroso, é um pouquinho chato mas dá pra ver que vc tenta agradar sempre a pessoa, ela vai ser uma menina muito amada pelo pai e super feliz
+            </p>
+        </div>
+
+        <button class="back-button" onclick="window.location.href='menu.html'">Voltar para os Menus</button>
+    </div>
+</body>
+</html>

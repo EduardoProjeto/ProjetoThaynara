@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Mundo</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #FF69B4, #24d3ff); /* Gradiente inicial rosa e roxo/azul */
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite; /* Animação suave do gradiente */
+            overflow: hidden; /* Garante que o gradiente não cause barras de rolagem */
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .menu-container {
+            background-color: rgba(0, 0, 0, 0.4); /* Fundo semi-transparente para o menu */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(72, 6, 148, 0.7); /* Sombra neon rosa */
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            -webkit-backdrop-filter: blur(5px); /* Para compatibilidade com Safari */
+            backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
+        }
+
+        .menu-item {
+            display: block;
+            margin: 15px 0;
+            padding: 15px 25px;
+            background-color: rgba(255, 255, 255, 0.1); /* Botões semi-transparentes */
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Borda sutil */
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px); /* Efeito de "levantar" ao passar o mouse */
+        }
+
+        .final-button {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background-color: #FFD700; /* Dourado para o botão final */
+            color: #333;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5); /* Sombra dourada */
+        }
+
+        .final-button:hover {
+            background-color: #FFC400;
+            transform: scale(1.05); /* Aumenta um pouco ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <a href="seu-texto.html" class="menu-item">Mensagem Especial</a>
+        <a href="Algo?.html" class="menu-item">Algo?</a>
+        <a href="mensagem-favorita.html" class="menu-item">Minhas Mensagens Favoritas</a>
+        <a href="presente.html" class="menu-item">Sobre o Presente</a>
+    </div>
+
+    <button class="final-button" onclick="alert('Agora pode abrir seu presente! A caixa te espera :)');">
+        FIM
+    </button>
+</body>
+</html>
