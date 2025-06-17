@@ -1,10 +1,11 @@
 function login() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const errorMessage = document.getElementById("error-message");
 
-    if (username === "Thaynara" && password === "27/03/2024") {
-        window.location.href = "start.html";  // A próxima página será a da tela preta com estrelas
-    } else {
-        document.getElementById('error-message').innerText = "Login ou senha incorretos!";
-    }
+  if (username === "Thaynara" && password === "27032024") {
+    window.location.href = "start.html"; // muda para a página das estrelas
+  } else {
+    errorMessage.textContent = "Usuário ou senha incorretos.";
+  }
 }
