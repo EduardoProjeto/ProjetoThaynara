@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Mundo Sem Você</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -16,7 +15,9 @@
             align-items: center;
             height: 100vh;
             flex-direction: column;
-            font-family: 'Montserrat', sans-serif; /* Usando Montserrat como fonte principal */
+            /* ***** MUDANÇA AQUI: Nova pilha de fontes do sistema ***** */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                         Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             position: relative; /* Necessário para z-index */
         }
 
@@ -37,8 +38,7 @@
             justify-content: center; /* Centraliza verticalmente */
             align-items: center; /* Centraliza horizontalmente */
             height: auto; /* Altura automática para o conteúdo */
-            padding: 20px; /* Adiciona padding para o texto não colar nas bordas do #messages */
-            /* Isso ajuda a definir uma "área de exclusão" para as estrelas */
+            /* padding: 20px; */ /* Removido, como discutido na iteração anterior */
         }
 
         .message {
@@ -47,48 +47,49 @@
             text-align: center;
             transition: opacity 1s;
             margin-bottom: 20px; /* Espaço entre as mensagens */
+            padding: 0 15px; /* Adiciona padding lateral para o texto em si */
+            box-sizing: border-box; /* Para que o padding não adicione largura extra */
         }
 
-        /* --- NOVO ESTILO DO BOTÃO (Copiado do login) --- */
+        /* --- ESTILO DO BOTÃO --- */
         #nextButton {
             display: none; /* Inicialmente oculto pelo JS */
             
-            /* Estilos copiados do botão de login */
-            background: linear-gradient(90deg, #8A2BE2 0%, #FF69B4 100%); /* Gradiente do roxo ao rosa */
+            background: linear-gradient(90deg, #8A2BE2 0%, #FF69B4 100%);
             border: none;
-            padding: 15px 30px; /* Mais padding para um botão maior */
-            border-radius: 10px; /* Mais arredondado */
+            padding: 15px 30px;
+            border-radius: 10px;
             color: white;
-            font-size: 1.2em; /* Texto maior no botão */
+            font-size: 1.2em;
             cursor: pointer;
-            font-family: 'Montserrat', sans-serif; /* Usando Montserrat aqui, pode mudar para Orbitron se quiser */
+            /* ***** MUDANÇA AQUI: Inherit para herdar a fonte do body ***** */
+            font-family: inherit; 
             font-weight: 700;
             letter-spacing: 0.8px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4); /* Sombra do botão */
-            margin-top: 40px; /* Mais espaço acima do botão */
-            z-index: 10; /* Garante que o botão também fique acima das estrelas */
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            margin-top: 40px;
+            z-index: 10;
         }
 
         #nextButton:hover {
-            background: linear-gradient(90deg, #9932CC 0%, #FF8FB7 100%); /* Gradiente ligeiramente mais claro no hover */
-            transform: translateY(-2px); /* Efeito de elevação */
-            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6); /* Sombra mais pronunciada */
+            background: linear-gradient(90deg, #9932CC 0%, #FF8FB7 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
         }
 
         /* Destaque da palavra "tudo" */
         #highlight {
-            color: #FFD700; /* Dourado */
-            /* ***** MUDANÇA AQUI: Brilho mais intenso ***** */
-            text-shadow: 0 0 10px #FFD700, /* Sombra mais forte */
-                         0 0 20px rgba(255, 215, 0, 0.7); /* Adiciona uma segunda sombra mais difusa */
+            color: #FFD700;
+            text-shadow: 0 0 10px #FFD700,
+                         0 0 20px rgba(255, 215, 0, 0.7);
         }
 
         /* Responsividade para mensagens em telas menores */
         @media (max-width: 600px) {
             .message {
-                font-size: 1.2em; /* Reduz tamanho da fonte em telas menores */
-                padding: 0 15px; /* Adiciona padding lateral para não colar nas bordas */
+                font-size: 1.2em;
+                padding: 0 15px;
             }
             #nextButton {
                 padding: 12px 25px;
@@ -113,65 +114,74 @@
             return Math.random() * (max - min) + min;
         }
 
-        // --- MUDANÇA AQUI: Lógica para evitar estrelas na área do texto ---
         const messagesContainer = document.getElementById('messages');
-        let messageRect; // Irá armazenar as dimensões do container de mensagens
+        const nextButton = document.getElementById('nextButton');
 
         // Atrasar a obtenção do tamanho para garantir que o DOM esteja renderizado
         setTimeout(() => {
-            messageRect = messagesContainer.getBoundingClientRect();
+            const messageRect = messagesContainer.getBoundingClientRect();
+            const buttonRect = nextButton.getBoundingClientRect();
 
-            // Gerando as estrelas
-            const numStars = 100; // Aumentei para 100 estrelas para um fundo mais denso
+            const exclusionTop = messageRect.top;
+            const exclusionBottom = buttonRect.bottom;
+            const exclusionLeft = Math.min(messageRect.left, buttonRect.left);
+            const exclusionRight = Math.max(messageRect.right, buttonRect.right);
+
+            const safetyMargin = 25; // Margem de segurança
+
+            const numStars = 150; // Aumentei para 150 estrelas
             for (let i = 0; i < numStars; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
 
                 let starX, starY;
-                let tries = 0; // Para evitar loop infinito em casos extremos
+                let tries = 0;
 
-                // Loop para garantir que a estrela não apareça sobre o texto
                 do {
                     starX = getRandom(0, window.innerWidth);
                     starY = getRandom(0, window.innerHeight);
                     tries++;
-                    // Se estiver dentro da área de mensagens (com uma pequena margem de segurança)
+
                 } while (
-                    starX > (messageRect.left - 30) && // Esquerda da área de exclusão
-                    starX < (messageRect.right + 30) && // Direita da área de exclusão
-                    starY > (messageRect.top - 30) &&   // Topo da área de exclusão
-                    starY < (messageRect.bottom + 30) && // Base da área de exclusão
-                    tries < 100 // Limite de tentativas para evitar loop infinito
+                    starX >= (exclusionLeft - safetyMargin) &&
+                    starX <= (exclusionRight + safetyMargin) &&
+                    starY >= (exclusionTop - safetyMargin) &&
+                    starY <= (exclusionBottom + safetyMargin) &&
+                    tries < 200
                 );
+
+                if (tries >= 200) {
+                     starX = getRandom(0, window.innerWidth);
+                     starY = getRandom(0, 50);
+                     if (Math.random() > 0.5) {
+                         starY = getRandom(window.innerHeight - 50, window.innerHeight);
+                     }
+                }
 
                 star.style.left = starX + 'px';
                 star.style.top = starY + 'px';
 
-                // Adicionando um leve efeito de brilho/tamanho variável
-                const size = getRandom(1, 3); // Estrelas de 1px a 3px
+                const size = getRandom(1, 3);
                 star.style.width = size + 'px';
                 star.style.height = size + 'px';
-                star.style.opacity = getRandom(0.2, 0.8); // Opacidade variada
+                star.style.opacity = getRandom(0.2, 0.8);
                 document.body.appendChild(star);
             }
-        }, 100); // Pequeno atraso para garantir que o DOM esteja pronto
+        }, 100);
 
         // Controlando a exibição das mensagens
         const msg1 = document.getElementById('msg1');
         const msg2 = document.getElementById('msg2');
         const msg3 = document.getElementById('msg3');
-        const nextButton = document.getElementById('nextButton');
 
-        // Sequência de mensagens
         setTimeout(() => { msg1.style.opacity = 1; }, 1000);
-        setTimeout(() => { msg1.style.opacity = 0; }, 4000); // Exibe msg1 por 3 segundos
+        setTimeout(() => { msg1.style.opacity = 0; }, 4000);
 
         setTimeout(() => { msg2.style.opacity = 1; }, 5000);
-        setTimeout(() => { msg2.style.opacity = 0; }, 7000); // Exibe msg2 por 2 segundos
+        setTimeout(() => { msg2.style.opacity = 0; }, 7000);
 
         setTimeout(() => {
             msg3.style.opacity = 1;
-            // Centraliza o botão verticalmente com as mensagens
             nextButton.style.display = 'inline-block';
         }, 8000);
     </script>
