@@ -2,38 +2,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 body {
-    font-family: 'Orbitron', sans-serif; /* Aplica a nova fonte */
-    /* SEU GRADIENTE ORIGINAL: MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    background: linear-gradient(180deg, #0A0A1A 0%, #000000 100%); /* Gradiente muito escuro, do azul marinho profundo ao preto */
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(180deg, #0A0A1A 0%, #000000 100%);
     color: white;
     margin: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Garante que as estrelas não causem scroll */
-    position: relative; /* Para posicionar as estrelas corretamente */
-    /* Adicionando will-change para uma pequena otimização. Pode ser removido se não ajudar. */
+    overflow: hidden;
+    position: relative;
     will-change: background-image;
-    transform: translateZ(0); /* ADICIONADO */
-     padding: 0 20px; /* 0px de padding vertical e 20px de padding horizontal */
-    /* Você pode ajustar o 20px para um valor que ache melhor, ex: 15px, 25px */
-    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+    transform: translateZ(0);
+
+    /* REMOVIDO: O padding lateral que adicionamos antes no body,
+       pois agora o espaçamento será gerenciado pelo margin do .login-container. */
+    padding: 0;
+    box-sizing: border-box; /* Boa prática, mantenha */
 }
 
-/* Efeito de Estrelas no Fundo (CSS puro) - MANTIDO EXATAMENTE COMO VOCÊ TINHA */
+/* Efeito de Estrelas no Fundo (CSS puro) */
 .background-stars {
     position: absolute;
     width: 100%;
     height: 100%;
     background: transparent;
-    z-index: -1; /* Fica atrás de tudo */
-    /* Adicionando will-change para uma pequena otimização. Pode ser removido se não ajudar. */
+    z-index: -1;
     will-change: transform, opacity;
-    transform: translateZ(0); /* ADICIONADO */
+    transform: translateZ(0);
 }
 
-/* Cria as "estrelas" como sombras no pseudo-elemento - MANTIDO EXATAMENTE COMO VOCÊ TINHA */
+/* Cria as "estrelas" como sombras no pseudo-elemento */
 .background-stars::before {
     content: '';
     position: absolute;
@@ -42,22 +41,21 @@ body {
     width: 1px;
     height: 1px;
     background: white;
-    box-shadow: 
-        100vw 50vh #FFF, 
-        80vw 20vh #FFF, 
-        60vw 80vh #FFF, 
-        30vw 10vh #FFF, 
+    box-shadow:
+        100vw 50vh #FFF,
+        80vw 20vh #FFF,
+        60vw 80vh #FFF,
+        30vw 10vh #FFF,
         10vw 90vh #FFF,
         90vw 30vh #DDD,
         70vw 70vh #DDD,
         40vw 40vh #DDD,
         20vw 60vh #DDD,
         50vw 10vh #CCC,
-        /* Adicione mais estrelas (par de valores x y) aqui para mais densidade */
-        5vw 50vh #FFF, 
-        85vw 25vh #FFF, 
-        65vw 85vh #FFF, 
-        35vw 15vh #FFF, 
+        5vw 50vh #FFF,
+        85vw 25vh #FFF,
+        65vw 85vh #FFF,
+        35vw 15vh #FFF,
         15vw 95vh #FFF,
         95vw 35vh #DDD,
         75vw 75vh #DDD,
@@ -70,11 +68,11 @@ body {
         92vw 62vh #FFF,
         3vw 33vh #DDD,
         66vw 95vh #EEE,
-        88vw 5vw #FFF; /* Exemplo de mais estrelas */
-    animation: twinkle 5s infinite alternate; /* Efeito de piscar sutil */
+        88vw 5vw #FFF;
+    animation: twinkle 5s infinite alternate;
 }
 
-/* Efeito de piscar das estrelas - MANTIDO EXATAMENTE COMO VOCÊ TINHA */
+/* Efeito de piscar das estrelas */
 @keyframes twinkle {
     0% { opacity: 1; }
     50% { opacity: 0.5; }
@@ -83,23 +81,24 @@ body {
 
 
 .login-container {
-    /* **MUDANÇA CRÍTICA AQUI:** Aumentei a opacidade do fundo.
-       Isso é o que provavelmente estava causando o "esbranquiçado" no iOS.
-       De 0.4 para 0.7 ou 0.8. Tente 0.7 primeiro, se não funcionar, tente 0.8. */
-     background: rgba(17, 17, 34, 0.4); /* Seu valor original de opacidade que agora funciona */
+    background: rgba(17, 17, 34, 0.4); /* O valor de opacidade que funcionou para você */
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 0 30px rgba(138, 43, 226, 0.6),
                 0 0 60px rgba(255, 105, 180, 0.3);
-    width: 90%; /* Isso garante que ele ocupe 90% da largura disponível */
+    width: 90%;
     max-width: 380px;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
     animation: fadeIn 1s ease-out;
     will-change: transform, opacity;
     transform: translateZ(0);
+
+    /* ***** MUDANÇA PRINCIPAL PARA O ESPAÇAMENTO LATERAL ***** */
+    margin: auto 20px; /* Centraliza verticalmente e adiciona 20px de margem nas laterais */
+    /* Você pode ajustar o 20px para um valor que ache melhor (ex: 15px, 25px) */
 }
 
 @keyframes fadeIn {
@@ -108,81 +107,77 @@ body {
 }
 
 h2 {
-    color: #ADD8E6; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA (azul claro) */
-    margin-bottom: 25px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    font-size: 1.6em; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    font-weight: 700; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    letter-spacing: 1px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    text-shadow: 0 0 10px rgba(173, 216, 230, 0.5); /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
+    color: #ADD8E6;
+    margin-bottom: 25px;
+    font-size: 1.6em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
 }
 
 input {
-    width: 100%; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    padding: 12px 15px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    margin: 10px 0; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    border-radius: 10px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    background-color: rgba(255, 255, 255, 0.1); /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    color: #F0F8FF; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    font-family: inherit; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA (Herdará Orbitron, se quiser Montserrat, mude aqui) */
-    font-size: 1em; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    box-sizing: border-box; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    transition: all 0.3s ease; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    outline: none; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #F0F8FF;
+    font-family: inherit;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    outline: none;
 }
 
 input::placeholder {
-    color: rgba(255, 255, 255, 0.6); /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
+    color: rgba(255, 255, 255, 0.6);
 }
 
 input:focus {
-    border-color: #9370DB; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    box-shadow: 0 0 10px rgba(147, 112, 219, 0.5); /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    background-color: rgba(255, 255, 255, 0.15); /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
+    border-color: #9370DB;
+    box-shadow: 0 0 10px rgba(147, 112, 219, 0.5);
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 button {
-    /* MUDANÇA: Gradiente do botão padronizado com as outras telas,
-       já que você mencionou que as outras telas estão com esse estilo.
-       Se quiser o original da tela de login, me diga. */
-    background: linear-gradient(90deg, #8A2BE2 0%, #FF69B4 100%); /* Gradiente do roxo ao rosa */
-    border: none; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    width: 100%; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    padding: 15px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    border-radius: 10px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    color: white; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    font-size: 1.2em; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    cursor: pointer; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    font-family: inherit; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA (Herdará Orbitron, se quiser Montserrat, mude aqui) */
-    font-weight: 700; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    letter-spacing: 0.8px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    transition: all 0.3s ease; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    /* MUDANÇA: Sombra do botão padronizada com as outras telas */
+    background: linear-gradient(90deg, #8A2BE2 0%, #FF69B4 100%);
+    border: none;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
-    margin-top: 15px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
+    margin-top: 15px;
 }
 
 button:hover {
-    /* MUDANÇA: Efeito hover do botão padronizado com as outras telas */
-    background: linear-gradient(90deg, #9932CC 0%, #FF8FB4 100%); /* Gradiente ligeiramente mais claro no hover */
-    transform: translateY(-2px); /* Efeito de elevação */
-    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6); /* Sombra mais pronunciada */
+    background: linear-gradient(90deg, #9932CC 0%, #FF8FB4 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
 }
 
 #error-message {
-    color: #FF5555; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    margin-top: 15px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    min-height: 20px; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    font-size: 0.9em; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    opacity: 0.8; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
-    font-family: inherit; /* MANTIDO EXATAMENTE COMO VOCÊ TINHA */
+    color: #FF5555;
+    margin-top: 15px;
+    min-height: 20px;
+    font-size: 0.9em;
+    opacity: 0.8;
+    font-family: inherit;
 }
 
-/* Responsividade básica - MANTIDO EXATAMENTE COMO VOCÊ TINHA */
+/* Responsividade básica */
 @media (max-width: 480px) {
     .login-container {
         padding: 25px;
-        max-width: 95%;
+        max-width: 95%; /* Ele vai ocupar 95% do espaço disponível DENTRO das margens */
+        /* A margem de 20px do .login-container ainda será aplicada */
     }
     h2 {
         font-size: 1.4em;
