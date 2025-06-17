@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Mundo Sem Você</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             background-color: black;
-            overflow: hidden;
+            overflow: hidden; /* Mantém o scroll escondido para as estrelas */
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             flex-direction: column;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-            Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-
+            font-family: 'Montserrat', sans-serif; /* Usando Montserrat como fonte principal */
+            position: relative; /* Necessário para z-index */
         }
 
         .star {
@@ -26,6 +26,19 @@
             height: 2px;
             background: white;
             border-radius: 50%;
+            z-index: 0; /* Estrelas atrás do conteúdo principal */
+        }
+
+        #messages {
+            position: relative; /* Para que z-index funcione */
+            z-index: 10; /* Garante que as mensagens fiquem acima das estrelas */
+            display: flex; /* Para centralizar as mensagens internamente */
+            flex-direction: column; /* Organiza as mensagens em coluna */
+            justify-content: center; /* Centraliza verticalmente */
+            align-items: center; /* Centraliza horizontalmente */
+            height: auto; /* Altura automática para o conteúdo */
+            padding: 20px; /* Adiciona padding para o texto não colar nas bordas do #messages */
+            /* Isso ajuda a definir uma "área de exclusão" para as estrelas */
         }
 
         .message {
@@ -33,6 +46,7 @@
             font-size: 1.5em;
             text-align: center;
             transition: opacity 1s;
+            margin-bottom: 20px; /* Espaço entre as mensagens */
         }
 
         /* --- NOVO ESTILO DO BOTÃO (Copiado do login) --- */
@@ -47,12 +61,13 @@
             color: white;
             font-size: 1.2em; /* Texto maior no botão */
             cursor: pointer;
-            font-family: inherit; /* Mantém a fonte do corpo, ou você pode importar 'Orbitron' se quiser */
+            font-family: 'Montserrat', sans-serif; /* Usando Montserrat aqui, pode mudar para Orbitron se quiser */
             font-weight: 700;
             letter-spacing: 0.8px;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4); /* Sombra do botão */
             margin-top: 40px; /* Mais espaço acima do botão */
+            z-index: 10; /* Garante que o botão também fique acima das estrelas */
         }
 
         #nextButton:hover {
@@ -64,7 +79,9 @@
         /* Destaque da palavra "tudo" */
         #highlight {
             color: #FFD700; /* Dourado */
-            text-shadow: 0 0 8px #FFD700;
+            /* ***** MUDANÇA AQUI: Brilho mais intenso ***** */
+            text-shadow: 0 0 10px #FFD700, /* Sombra mais forte */
+                         0 0 20px rgba(255, 215, 0, 0.7); /* Adiciona uma segunda sombra mais difusa */
         }
 
         /* Responsividade para mensagens em telas menores */
@@ -85,26 +102,59 @@
     <div id="messages">
         <div id="msg1" class="message">Esse era o meu mundo sem você...</div>
         <div id="msg2" class="message">Mas...</div>
-        <div id="msg3" class="message">Você chegou e mudou <span id="highlight">Tudo!</span>.</div>
+        <div id="msg3" class="message">Você chegou e mudou <span id="highlight">Tudo!</span></div>
     </div>
 
     <button id="nextButton" onclick="window.location.href='menu.html'">Continuar</button>
 
     <script>
-        // Criando as estrelas
-        // Para uma quantidade maior de estrelas ou controle mais dinâmico, considere CSS para fundo ou um canvas
-        for (let i = 0; i < 50; i++) { // Aumentei para 50 estrelas para um fundo mais denso
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.top = Math.random() * window.innerHeight + 'px';
-            star.style.left = Math.random() * window.innerWidth + 'px';
-            // Adicionando um leve efeito de brilho/tamanho variável
-            const size = Math.random() * 2 + 1; // Estrelas de 1px a 3px
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-            star.style.opacity = Math.random() * 0.8 + 0.2; // Opacidade variada
-            document.body.appendChild(star);
+        // Função para gerar um número aleatório dentro de um intervalo
+        function getRandom(min, max) {
+            return Math.random() * (max - min) + min;
         }
+
+        // --- MUDANÇA AQUI: Lógica para evitar estrelas na área do texto ---
+        const messagesContainer = document.getElementById('messages');
+        let messageRect; // Irá armazenar as dimensões do container de mensagens
+
+        // Atrasar a obtenção do tamanho para garantir que o DOM esteja renderizado
+        setTimeout(() => {
+            messageRect = messagesContainer.getBoundingClientRect();
+
+            // Gerando as estrelas
+            const numStars = 100; // Aumentei para 100 estrelas para um fundo mais denso
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+
+                let starX, starY;
+                let tries = 0; // Para evitar loop infinito em casos extremos
+
+                // Loop para garantir que a estrela não apareça sobre o texto
+                do {
+                    starX = getRandom(0, window.innerWidth);
+                    starY = getRandom(0, window.innerHeight);
+                    tries++;
+                    // Se estiver dentro da área de mensagens (com uma pequena margem de segurança)
+                } while (
+                    starX > (messageRect.left - 30) && // Esquerda da área de exclusão
+                    starX < (messageRect.right + 30) && // Direita da área de exclusão
+                    starY > (messageRect.top - 30) &&   // Topo da área de exclusão
+                    starY < (messageRect.bottom + 30) && // Base da área de exclusão
+                    tries < 100 // Limite de tentativas para evitar loop infinito
+                );
+
+                star.style.left = starX + 'px';
+                star.style.top = starY + 'px';
+
+                // Adicionando um leve efeito de brilho/tamanho variável
+                const size = getRandom(1, 3); // Estrelas de 1px a 3px
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.opacity = getRandom(0.2, 0.8); // Opacidade variada
+                document.body.appendChild(star);
+            }
+        }, 100); // Pequeno atraso para garantir que o DOM esteja pronto
 
         // Controlando a exibição das mensagens
         const msg1 = document.getElementById('msg1');
@@ -122,7 +172,7 @@
         setTimeout(() => {
             msg3.style.opacity = 1;
             // Centraliza o botão verticalmente com as mensagens
-            nextButton.style.display = 'inline-block'; 
+            nextButton.style.display = 'inline-block';
         }, 8000);
     </script>
 
