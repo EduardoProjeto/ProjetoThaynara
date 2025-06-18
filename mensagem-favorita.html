@@ -73,6 +73,9 @@
             border: 1px solid rgba(255, 255, 255, 0.15); /* Borda sutil */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidade */
             color: #E0FFFF; /* Cor do texto (branco azulado suave) */
+            display: flex;
+             flex-direction: column;
+             justify-content: space-between;
         }
 
         .message-card::before {
@@ -86,6 +89,13 @@
             line-height: 1;
             opacity: 0.7;
             pointer-events: none; /* Garante que não interfere com a seleção de texto */
+        }
+        .message-date {
+ text-align: right; /* Alinha a data à direita */
+ font-size: 0.85em; /* Tamanho menor para a data */
+ color: rgba(255, 255, 255, 0.7); /* Cor sutil */
+margin-top: 15px; /* Espaçamento da data para o texto */
+font-weight: 300; /* Peso da fonte mais leve */
         }
 
         .message-card p {
@@ -157,12 +167,14 @@
             <p>
                 "Então, eu gosto muito de vc, acho que meio doido tudo isso, mas sla as vezes eu fico com medo de falar as coisas e ser mais próxima de vc e acabar sendo invasiva por vc não sentir o mesmo, mas acho que as coisas vem e vão muito rápido, então eu sei que essa situação é meio rápida né, porém eu gosto de vc, gosto de como vc me trata, vc traz sensações diferentes, muita das vezes sinto meu coração ficar acelerado com qualquer coisinha que vc faz , amo ouvir a sua voz, geralmente me pego sorrindo quando escuto vc, vc é um garoto incrível, tem um coração maravilhoso vc é simplesmente a pessoa mais doce que eu já conheci na minha vida, Caramba vc faz o meu corpo inteiro entrar em pânico desde o dia em que nos vimos , não sabia ao certo como ia ser mas sabia que não daria pra me afastar kkkkk, então não sei como vc se sente em relação a tudo isso, mas eu gosto de vc, não sei oq podemos ser e tals, mas aceito oq vc quiser 🫶🏻"
             </p>
+            <span class="message-date">21/04</span>
         </div>
 
         <div class="message-card">
             <p>
                 "Sabe algo que eu penso, eu fico muito feliz pela Alice ter vc como pai sabe, vc é uma pessoa incrível, vc é cuidadoso e super amoroso, é um pouquinho chato mas dá pra ver que vc tenta agradar sempre a pessoa, ela vai ser uma menina muito amada pelo pai e super feliz."
             </p>
+            <span class="message-date">20/07</span>
         </div>
 
         <button class="back-button" onclick="window.location.href='menu.html'">Voltar para o Menu</button>
