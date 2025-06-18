@@ -8,7 +8,8 @@
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            min-height: -webkit-fill-available;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,8 +18,8 @@
             background: linear-gradient(-45deg, #1A0033, #330066, #6A0DAD, #FF69B4, #330066, #1A0033);
             background-size: 600% 600%; /* Aumenta o tamanho para animação mais suave */
             animation: gradientAnimation 20s ease infinite; /* Animação mais lenta */
-            overflow: hidden;
             padding: 20px;
+            padding-bottom: 80px;
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif; /* Fonte para o corpo */
             color: white;
@@ -44,7 +45,7 @@
             -webkit-backdrop-filter: blur(10px); /* Aumenta o blur */
             backdrop-filter: blur(10px);
             overflow-y: auto; /* Permite rolagem se o conteúdo for muito grande */
-            max-height: 85vh; /* Ocupa mais altura da tela */
+            max-height: calc(100vh - 100px);  /* Ocupa mais altura da tela */
             display: flex;
             flex-direction: column;
             gap: 30px; /* Mais espaço entre os elementos */
