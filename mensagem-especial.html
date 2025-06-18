@@ -17,10 +17,11 @@
             background: linear-gradient(135deg, #1A0033, #330066, #6A0DAD);
             background-size: 400% 400%;
             animation: gradientAnimation 18s ease infinite; /* Animação mais suave */
-            overflow: hidden;
             padding: 20px;
+            padding-bottom: 80px;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif; /* Fonte para o corpo */
+            font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+            Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             color: white;
         }
 
@@ -44,7 +45,7 @@
             -webkit-backdrop-filter: blur(10px); /* Aumenta o blur */
             backdrop-filter: blur(10px);
             overflow-y: auto;
-            max-height: 85vh; /* Mais altura */
+            max-height:calc(100vh - 100px); /* Mais altura */
             display: flex;
             flex-direction: column;
             gap: 25px; /* Mais espaço entre os elementos */
@@ -70,8 +71,8 @@
             text-align: left;
             line-height: 1.8; /* Mais espaçamento entre linhas */
             border: 1px solid rgba(255, 255, 255, 0.08); /* Borda mais suave */
+            max-height: 100%; 
             overflow-y: auto;
-            max-height: 65vh;
             font-size: 1.15em; /* Fonte um pouco maior e mais leve */
             font-weight: 300;
             color: #E0FFFF; /* Um branco azulado suave */
@@ -134,6 +135,7 @@
         @media (max-width: 768px) {
             .content-container {
                 padding: 25px;
+                 max-height: calc(100vh - 60px);
             }
             h1 {
                 font-size: 1.8em;
